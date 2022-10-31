@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request
+import os
+
+from flask import Flask, render_template, request, redirect
 from flask_session import Session
 import pyshorteners
 
@@ -15,6 +17,7 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
+key = "" #BITLY API KEY
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -23,13 +26,11 @@ def index():
     else:
         type = request.form.get("type")
         lurl = request.form.get("longUrl")
-        print(type)
-        print(lurl)
-
+        
         if not type or not lurl:
             return render_template('error.html') 
         elif type == "bitly":
-            shortener = pyshorteners.Shortener(api_key='2397da4b4ef52c663606be8d89d95b9992996919')
+            shortener = pyshorteners.Shortener(api_key=key)
             surl = shortener.bitly.short(lurl)
         elif type == "tinyurl":
             shortener = pyshorteners.Shortener()
