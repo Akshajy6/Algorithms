@@ -1,8 +1,7 @@
-import os
-
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request
 from flask_session import Session
 import pyshorteners
+import qrcode
 
 app = Flask(__name__)
 
@@ -17,7 +16,7 @@ def after_request(response):
     response.headers["Pragma"] = "no-cache"
     return response
 
-key = "" #BITLY API KEY
+key = "" #BITLY API KEY HERE
 
 @app.route("/", methods=["GET", "POST"])
 def index():
@@ -35,6 +34,10 @@ def index():
         elif type == "tinyurl":
             shortener = pyshorteners.Shortener()
             surl = shortener.tinyurl.short(lurl) 
+        elif type == "qr":
+            img = qrcode.make(lurl)
+            img.save("static/qrcode.png")
+            return render_template("qrcode.html")
         else:
             return render_template('error.html')
         
