@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Image Conversion</title>
+        <link href="/static/styles.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    </head>
+    <body class="container-fluid py-5 text-center">
+        <h2>Convert image file</h2>
+        <br>
+        <form action="/imagetools" method="POST" enctype=multipart/form-data>
+            <input class="form-control" name="file" id="file" type="file" accept="file/*" multiple>
+            <br>
+            <label for="type">Convert to:</label>
+            <select class="form-control" name="type" id="type">
+                <option value="jpg">jpg</option>
+                <option value="jpeg">jpeg</option>
+                <option value="png">png</option>
+                <option value="webp">webp</option>  
+            </select>
+            <input class="btn btn-primary" type="submit" value="Convert">
+        </form>
+        <br>
+        <br>
+        <br>
+        <form action="/">
+            <button class="btn btn-primary btn-lg">Back</button>        
+        </form>
+    </body>
+</html>
