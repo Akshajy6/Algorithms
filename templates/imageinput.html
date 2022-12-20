@@ -20,13 +20,20 @@
                 <option value="png">png</option>
                 <option value="webp">webp</option>  
             </select>
+            <br>
             <input class="btn btn-primary" type="submit" value="Convert">
         </form>
         <br>
         <br>
         <br>
-        <form action="/">
-            <button class="btn btn-primary btn-lg">Back</button>        
-        </form>
+        <div class="text-center"> 
+            <button class="btn btn-primary" onclick="back()">Back</button>
+        </div>
     </body>
 </html>
+
+<script>
+    function back() {
+        window.history.back();
+    }
+</script>

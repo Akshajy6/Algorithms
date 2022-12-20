@@ -78,8 +78,10 @@ def imagetools():
         if not type or type not in ALLOWED_EXTENSIONS:
             return render_template("error.html")
 
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], f"{type}.png"))
-        return redirect("/")
+        new_name = f"{file_name.rsplit('.', 1)[0]}.{type}"
+        source = os.path.join(app.config['UPLOAD_FOLDER'], new_name)
+        file.save(source)
+        return render_template("image.html", source=source)
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS

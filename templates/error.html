@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>ERROR</title>
+        <title>404 Error</title>
         <link href="/static/styles.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     </head>
@@ -9,9 +9,13 @@
         <h2>Invalid Request</h2>
         <br>
         <div class="text-center"> 
-            <form action="/">
-                <button class="btn btn-primary btn-lg">Back</button>        
-            </form>
+            <button class="btn btn-primary" onclick="back()">Back</button>
         </div>
     </body>
 </html>
+
+<script>
+    function back() {
+        window.history.back();
+    }
+</script>

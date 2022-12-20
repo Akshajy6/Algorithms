@@ -10,9 +10,13 @@
             <h4>Shortened URL: <a href={{ surl }}>{{ surl }}</a></h4>
         </div>
         <div class="text-center"> 
-            <form action="/urltools">
-                <button class="btn btn-primary btn-lg">Back</button>        
-            </form>
+            <button class="btn btn-primary" onclick="back()">Back</button>
         </div>
     </body>
 </html>
+
+<script>
+    function back() {
+        window.history.back();
+    }
+</script>
