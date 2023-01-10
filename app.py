@@ -3,6 +3,7 @@ from flask_session import Session
 from werkzeug.utils import secure_filename
 import pyshorteners
 import qrcode
+import glob
 import os
 
 ALLOWED_EXTENSIONS = ['png' ,'jpg' ,'jpeg', 'webp', 'heic']
@@ -80,6 +81,9 @@ def imagetools():
 
         new_name = f"{file_name.rsplit('.', 1)[0]}.{type}"
         source = os.path.join(app.config['UPLOAD_FOLDER'], new_name)
+        files = glob.glob(app.config["UPLOAD_FOLDER"] + "\\*")
+        for f in files:
+            os.remove(f)
         file.save(source)
         return render_template("image.html", source=source)
 
