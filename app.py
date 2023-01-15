@@ -5,15 +5,18 @@ import pyshorteners
 import qrcode
 import glob
 import os
+import dotenv
 
 ALLOWED_EXTENSIONS = ['png' ,'jpg' ,'jpeg', 'webp', 'heic']
 
 app = Flask(__name__)
 
+dotenv.load_dotenv("./.env")
+
 app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config["SESSION_TYPE"] = "filesystem"
 app.config["UPLOAD_FOLDER"] = r"static\uploads"
-app.config["MAX_CONTENT_LENGTH"] = 32 * 1000 * 1000 * 1000
+app.config["API_KEY"] = os.getenv("API_KEY")
 Session(app)
 
 @app.after_request
@@ -48,7 +51,7 @@ def urltools():
             return render_template("error.html") 
         elif type == "bitly":
             print(os.getenv("API_KEY"))
-            shortener = pyshorteners.Shortener(api_key="2397da4b4ef52c663606be8d89d95b9992996919") #Bitly API Key
+            shortener = pyshorteners.Shortener(api_key=app.config["API_KEY"])
             surl = shortener.bitly.short(lurl)
         elif type == "tinyurl":
             shortener = pyshorteners.Shortener()
